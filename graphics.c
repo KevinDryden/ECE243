@@ -9,6 +9,7 @@ void clear_screen();
 void plot_pixel(int x, int y, short int line_color);
 void swap(int x0, int x1);
 void wait_for_vsync();
+int fill_rand(int* ptr, int a, int b); // fill ptr with a random number in [a, b]
 
 int main(void)
 {
@@ -168,4 +169,8 @@ void clear_screen(){
 void plot_pixel(int x, int y, short int line_color)
 {
     *(short int *)(pixel_buffer_start + (y << 10) + (x << 1)) = line_color;
+}
+
+int fill_rand(int* ptr, int a, int b) {
+	*ptr = a + rand() % (b - a + 1);
 }
