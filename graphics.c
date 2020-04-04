@@ -9,6 +9,20 @@ void clear_screen();
 void plot_pixel(int x, int y, short int line_color);
 void swap(int x0, int x1);
 void wait_for_vsync();
+
+void draw_ladders();
+void draw_shoots();
+void draw_one(int x,int y);
+void draw_two(int x,int y);
+void draw_three(int x,int y);
+void draw_four(int x,int y);
+void draw_five(int x,int y);
+void draw_six(int x,int y);
+void draw_seven(int x,int y);
+void draw_eight(int x,int y);
+void draw_nine(int x,int y);
+void draw_zero(int x,int y);
+void draw_numbers();
 int fill_rand(int* ptr, int a, int b); // fill ptr with a random number in [a, b]
 
 int main(void)
@@ -49,6 +63,9 @@ int main(void)
        //Insert game logic
         
         draw_board();
+        draw_ladders();
+        draw_shoots();
+        draw_numbers();
         
 
         wait_for_vsync(); // swap front and back buffers on VGA vertical sync
@@ -77,6 +94,285 @@ void wait_for_vsync(){
         temp = *(pixel_ctrl_ptr+3);
     }
     
+}
+
+void draw_ladders(){
+    draw_line(62+30*1,218-30*2,62+30*3,218-30*6,0x07C0);
+    draw_line(62+30*5,218-30*1,62+30*3,218-30*4,0x07C0);
+    draw_line(62+30*5,218-30*5,62+30*6,218-30*7,0x07C0);
+}
+void draw_shoots(){
+    draw_line(62+30*0,218-30*1,62+30*5,218-30*0,0xFC00);
+    draw_line(62+30*4,218-30*4,62+30*7,218-30*3,0xFC00);
+    draw_line(62+30*3,218-30*7,62+30*0,218-30*4,0xFC00);
+}
+
+void draw_one(int x,int y){
+    plot_pixel(x+3, y+5, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+3, 0x0000);
+    plot_pixel(x+5, y+2, 0x0000);
+    plot_pixel(x+5, y+3, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+5, y+5, 0x0000);
+    plot_pixel(x+5, y+6, 0x0000);
+    plot_pixel(x+5, y+7, 0x0000);
+    plot_pixel(x+5, y+8, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+5, y+10, 0x0000);
+    plot_pixel(x+5, y+11, 0x0000);
+    plot_pixel(x+5, y+12, 0x0000);
+    plot_pixel(x+5, y+13, 0x0000);
+    plot_pixel(x+5, y+14, 0x0000);
+    plot_pixel(x+5, y+15, 0x0000);
+    plot_pixel(x+4, y+15, 0x0000);
+    plot_pixel(x+3, y+15, 0x0000);
+    plot_pixel(x+6, y+15, 0x0000);
+    plot_pixel(x+7, y+15, 0x0000);
+}
+void draw_two(int x,int y){
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+3, y+6, 0x0000);
+    plot_pixel(x+4, y+6, 0x0000);
+    plot_pixel(x+5, y+6, 0x0000);
+    plot_pixel(x+6, y+6, 0x0000);
+    plot_pixel(x+7, y+7, 0x0000);
+    plot_pixel(x+7, y+8, 0x0000);
+    plot_pixel(x+7, y+9, 0x0000);
+    plot_pixel(x+6, y+10, 0x0000);
+    plot_pixel(x+5, y+11, 0x0000);
+    plot_pixel(x+4, y+12, 0x0000);
+    plot_pixel(x+3, y+13, 0x0000);
+    plot_pixel(x+2, y+14, 0x0000);
+    plot_pixel(x+3, y+14, 0x0000);
+    plot_pixel(x+4, y+14, 0x0000);
+    plot_pixel(x+5, y+14, 0x0000);
+    plot_pixel(x+6, y+14, 0x0000);
+    plot_pixel(x+7, y+14, 0x0000);
+}
+void draw_three(int x,int y){
+    plot_pixel(x+3, y+5, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+7, y+6, 0x0000);
+    plot_pixel(x+7, y+7, 0x0000);
+    plot_pixel(x+6, y+8, 0x0000);
+    plot_pixel(x+5, y+8, 0x0000);
+    plot_pixel(x+4, y+8, 0x0000);
+    plot_pixel(x+7, y+9, 0x0000);
+    plot_pixel(x+7, y+10, 0x0000);
+    plot_pixel(x+7, y+11, 0x0000);
+    plot_pixel(x+6, y+12, 0x0000);
+    plot_pixel(x+5, y+12, 0x0000);
+    plot_pixel(x+4, y+12, 0x0000);
+    plot_pixel(x+3, y+11, 0x0000);
+}
+void draw_four(int x,int y){
+    plot_pixel(x+2, y+4, 0x0000);
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+2, y+9, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+6, y+5, 0x0000);
+    plot_pixel(x+6, y+6, 0x0000);
+    plot_pixel(x+6, y+7, 0x0000);
+    plot_pixel(x+6, y+8, 0x0000);
+    plot_pixel(x+6, y+9, 0x0000);
+    plot_pixel(x+6, y+10, 0x0000);
+    plot_pixel(x+6, y+11, 0x0000);
+    plot_pixel(x+6, y+12, 0x0000);
+    plot_pixel(x+6, y+13, 0x0000);
+    plot_pixel(x+6, y+14, 0x0000);
+    plot_pixel(x+3, y+9, 0x0000);
+    plot_pixel(x+4, y+9, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    
+}
+void draw_five(int x,int y){
+    plot_pixel(x+6, y+5, 0x0000);
+    plot_pixel(x+5, y+5, 0x0000);
+    plot_pixel(x+4, y+5, 0x0000);
+    plot_pixel(x+3, y+5, 0x0000);
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+2, y+9, 0x0000);
+    plot_pixel(x+3, y+9, 0x0000);
+    plot_pixel(x+4, y+9, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+6, y+10, 0x0000);
+    plot_pixel(x+6, y+11, 0x0000);
+    plot_pixel(x+6, y+12, 0x0000);
+    plot_pixel(x+2, y+12, 0x0000);
+    plot_pixel(x+3, y+13, 0x0000);
+    plot_pixel(x+4, y+13, 0x0000);
+    plot_pixel(x+5, y+13, 0x0000);
+}
+void draw_six(int x,int y){
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+3, y+4, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+2, y+9, 0x0000);
+    plot_pixel(x+2, y+10, 0x0000);
+    plot_pixel(x+2, y+11, 0x0000);
+    plot_pixel(x+2, y+12, 0x0000);
+    plot_pixel(x+3, y+13, 0x0000);
+    plot_pixel(x+4, y+13, 0x0000);
+    plot_pixel(x+5, y+13, 0x0000);
+    plot_pixel(x+6, y+13, 0x0000);
+    plot_pixel(x+3, y+9, 0x0000);
+    plot_pixel(x+4, y+9, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+6, y+9, 0x0000);
+    plot_pixel(x+7, y+10, 0x0000);
+    plot_pixel(x+7, y+11, 0x0000);
+    plot_pixel(x+7, y+12, 0x0000);
+}
+void draw_seven(int x,int y){
+    plot_pixel(x+2, y+4, 0x0000);
+    plot_pixel(x+3, y+4, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+7, y+4, 0x0000);
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+7, y+6, 0x0000);
+    plot_pixel(x+6, y+7, 0x0000);
+    plot_pixel(x+6, y+8, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+5, y+10, 0x0000);
+    plot_pixel(x+4, y+11, 0x0000);
+    plot_pixel(x+4, y+12, 0x0000);
+    plot_pixel(x+3, y+13, 0x0000);
+    plot_pixel(x+3, y+14, 0x0000);
+}
+void draw_eight(int x,int y){
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+7, y+6, 0x0000);
+    plot_pixel(x+7, y+7, 0x0000);
+    plot_pixel(x+7, y+8, 0x0000);
+    plot_pixel(x+2, y+10, 0x0000);
+    plot_pixel(x+2, y+11, 0x0000);
+    plot_pixel(x+2, y+12, 0x0000);
+    plot_pixel(x+2, y+13, 0x0000);
+    plot_pixel(x+7, y+10, 0x0000);
+    plot_pixel(x+7, y+11, 0x0000);
+    plot_pixel(x+7, y+12, 0x0000);
+    plot_pixel(x+7, y+13, 0x0000);
+    plot_pixel(x+3, y+4, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+3, y+9, 0x0000);
+    plot_pixel(x+4, y+9, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+6, y+9, 0x0000);
+    plot_pixel(x+3, y+14, 0x0000);
+    plot_pixel(x+4, y+14, 0x0000);
+    plot_pixel(x+5, y+14, 0x0000);
+    plot_pixel(x+6, y+14, 0x0000);
+    
+}
+void draw_nine(int x,int y){
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+7, y+4, 0x0000);
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+7, y+6, 0x0000);
+    plot_pixel(x+7, y+7, 0x0000);
+    plot_pixel(x+7, y+8, 0x0000);
+    plot_pixel(x+7, y+9, 0x0000);
+    plot_pixel(x+7, y+10, 0x0000);
+    plot_pixel(x+7, y+11, 0x0000);
+    plot_pixel(x+7, y+12, 0x0000);
+    plot_pixel(x+7, y+13, 0x0000);
+    plot_pixel(x+7, y+14, 0x0000);
+    plot_pixel(x+7, y+15, 0x0000);
+    plot_pixel(x+3, y+4, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+6, y+4, 0x0000);
+    plot_pixel(x+3, y+9, 0x0000);
+    plot_pixel(x+4, y+9, 0x0000);
+    plot_pixel(x+5, y+9, 0x0000);
+    plot_pixel(x+6, y+9, 0x0000);
+}
+void draw_zero(int x,int y){
+    plot_pixel(x+7, y+5, 0x0000);
+    plot_pixel(x+7, y+6, 0x0000);
+    plot_pixel(x+7, y+7, 0x0000);
+    plot_pixel(x+7, y+8, 0x0000);
+    plot_pixel(x+7, y+9, 0x0000);
+    plot_pixel(x+7, y+10, 0x0000);
+    plot_pixel(x+7, y+11, 0x0000);
+    plot_pixel(x+7, y+12, 0x0000);
+    plot_pixel(x+7, y+13, 0x0000);
+    plot_pixel(x+7, y+14, 0x0000);
+    plot_pixel(x+2, y+5, 0x0000);
+    plot_pixel(x+2, y+6, 0x0000);
+    plot_pixel(x+2, y+7, 0x0000);
+    plot_pixel(x+2, y+8, 0x0000);
+    plot_pixel(x+2, y+9, 0x0000);
+    plot_pixel(x+2, y+10, 0x0000);
+    plot_pixel(x+2, y+11, 0x0000);
+    plot_pixel(x+2, y+12, 0x0000);
+    plot_pixel(x+2, y+13, 0x0000);
+    plot_pixel(x+2, y+14, 0x0000);
+    plot_pixel(x+3, y+4, 0x0000);
+    plot_pixel(x+4, y+4, 0x0000);
+    plot_pixel(x+5, y+4, 0x0000);
+    plot_pixel(x+3, y+15, 0x0000);
+    plot_pixel(x+4, y+15, 0x0000);
+    plot_pixel(x+5, y+15, 0x0000);
+}
+
+void draw_numbers(){
+    for(int i = 0; i < 64 ; i++){
+        int tens = i/10;
+        int ones = i%10;
+        int x = i%8;
+        int y = i/8;
+        switch(tens){
+            case 1: draw_one(40+30*x,210-30*y);break;
+            case 2: draw_two(40+30*x,210-30*y);break;
+            case 3: draw_three(40+30*x,210-30*y);break;
+            case 4: draw_four(40+30*x,210-30*y);break;
+            case 5: draw_five(40+30*x,210-30*y);break;
+            case 6: draw_six(40+30*x,210-30*y);break;
+            default :;
+        }
+        
+        switch(ones){
+            case 0: draw_zero(55+30*x,210-30*y);break;
+            case 1: draw_one(55+30*x,210-30*y);break;
+            case 2: draw_two(55+30*x,210-30*y);break;
+            case 3: draw_three(55+30*x,210-30*y);break;
+            case 4: draw_four(55+30*x,210-30*y);break;
+            case 5: draw_five(55+30*x,210-30*y);break;
+            case 6: draw_six(55+30*x,210-30*y);break;
+            case 7: draw_seven(55+30*x,210-30*y);break;
+            case 8: draw_eight(55+30*x,210-30*y);break;
+            case 9: draw_nine(55+30*x,210-30*y);break;
+            default :;
+        }
+    }
 }
 
 // code not shown for clear_screen() and draw_line() subroutines
