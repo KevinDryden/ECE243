@@ -1,3 +1,4 @@
+
 #include <stdlib.h>
 
 volatile int pixel_buffer_start; // global variable
