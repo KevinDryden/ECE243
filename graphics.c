@@ -1,5 +1,13 @@
 #include <stdlib.h>
+
 volatile int pixel_buffer_start; // global variable
+
+#define BLACK 0xFFFF
+#define WIDTH 320
+#define HEIGHT 240
+
+volatile int pixel_buffer_start; // global variable
+int hasLadder[WIDTH][HEIGHT], hasSnake[WIDTH][HEIGHT];
 
 void draw_line(int x0, int x1, int y0, int y1, short int line_color);
 void draw_yline(int x,  short int line_color);
@@ -10,6 +18,7 @@ void plot_pixel(int x, int y, short int line_color);
 void swap(int x0, int x1);
 void wait_for_vsync();
 
+void draw_player(int x, int y, short int color); // player is a 10x10 black box
 void draw_ladders();
 void draw_shoots();
 void draw_one(int x,int y);
@@ -28,7 +37,8 @@ int fill_rand(int* ptr, int a, int b); // fill ptr with a random number in [a, b
 int main(void)
 {
     volatile int * pixel_ctrl_ptr = (int *)0xFF203020;
-    
+    memset(hasLadder, 0, sizeof hasLadder);
+    memset(hasSnake, 0, sizeof hasSnake);
     //int xpoints[8];
     
     
@@ -83,7 +93,14 @@ int main(void)
 
 // code for subroutines (not shown)
 
-
+void draw_player(int x, int y, short int color) {
+	#define SIZE 10
+	for(int i = 0; i < SIZE; i++) {
+		for(int j = 0; j < SIZE; j++) {
+			plot_pixel(x+i, y+j, color);
+		}
+	}
+}
 
 void wait_for_vsync(){
     
@@ -468,5 +485,5 @@ void plot_pixel(int x, int y, short int line_color)
 }
 
 int fill_rand(int* ptr, int a, int b) {
-	*ptr = a + rand() % (b - a + 1);
+	return *ptr = a + rand() % (b - a + 1);
 }
