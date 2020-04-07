@@ -17,6 +17,7 @@ void clear_screen();
 void plot_pixel(int x, int y, short int line_color);
 void swap(int x0, int x1);
 void wait_for_vsync();
+void wait_for_button();
 
 void draw_player(int x, int y, short int color); // player is a 10x10 black box
 void draw_ladders();
@@ -111,6 +112,13 @@ void wait_for_vsync(){
         temp = *(pixel_ctrl_ptr+3);
     }
     
+}
+
+void wait_for_button() {
+	volatile int * key_ctrl_ptr = (int *) 0xFF200050; // base address for pushbuttons on de1soc
+	
+	while(*(key_ctrl_ptr + 3) == 0); // wait for edge capture register
+	*(key_ctrl_ptr+3) = 1; // write to clear edge cature
 }
 
 void draw_ladders(){
