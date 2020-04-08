@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 #include <stdlib.h>
 
@@ -21,7 +21,7 @@ void swap(int x0, int x1);
 void wait_for_vsync();
 void wait_for_button();
 
-void draw_player(int x, int y, short int color); // player is a 10x10 black box
+void draw_player(int x,int offset, short int color); // player is a 10x10 black box
 void draw_ladders();
 void draw_shoots();
 void draw_one(int x,int y);
@@ -36,6 +36,7 @@ void draw_nine(int x,int y);
 void draw_zero(int x,int y);
 void draw_numbers();
 int fill_rand(int* ptr, int a, int b); // fill ptr with a random number in [a, b]
+int game_logic(int point);
 
 int main(void)
 {
@@ -44,6 +45,9 @@ int main(void)
     memset(hasSnake, 0, sizeof hasSnake);
     //int xpoints[8];
     
+    int p1 = 0;
+    int p2 = 0;
+    int turn = 0;
     
     
     // declare other variables(not shown)
@@ -54,6 +58,7 @@ int main(void)
     /* initialize a pointer to the pixel buffer, used by drawing functions */
     pixel_buffer_start = *pixel_ctrl_ptr;
     clear_screen();
+    
     // pixel_buffer_start points to the pixel buffer
     /* set back pixel buffer to start of SDRAM memory */
     *(pixel_ctrl_ptr + 1) = 0xC0000000;
@@ -66,19 +71,23 @@ int main(void)
         
         
         
-
-            
-
+        
+        
+       
+        
         // code for drawing the boxes and lines (not shown)
         // code for updating the locations of boxes (not shown)
         
     
        //Insert game logic
-        
+        clear_screen();
         draw_board();
         draw_ladders();
         draw_shoots();
         draw_numbers();
+        
+        draw_player(p1,0, 0x07C0);
+        draw_player(p2,1, 0xFC00);
         
 
         wait_for_vsync(); // swap front and back buffers on VGA vertical sync
@@ -87,20 +96,49 @@ int main(void)
         
         pixel_buffer_start = *(pixel_ctrl_ptr + 1); // new back buffer
         
+        wait_for_button();
+        
+        if(turn == 0){
+            p1 = game_logic(p1);
+            turn = 1;
+            if(p1 > 62){
+                clear_screen();
+                //draw_win(0);
+                wait_for_button();
+                p1 = 0;
+                p2 = 0;
+                turn = 0;
+                
+            }
+        }
+        else{
+            p2 = game_logic(p2);
+            turn = 0;
+            if(p2 > 62){
+                clear_screen();
+                //draw_win(1);
+                wait_for_button();
+                p1 = 0;
+                p2 = 0;
+                turn = 0;
+                
+            }
         
         
         
-        
+    }
     }
 }
 
 // code for subroutines (not shown)
 
-void draw_player(int x, int y, short int color) {
+void draw_player(int x,int offset, short int color) {
 	#define SIZE 10
+    int xpos = x%8;
+    int ypos = x/8;
 	for(int i = 0; i < SIZE; i++) {
 		for(int j = 0; j < SIZE; j++) {
-			plot_pixel(x+i, y+j, color);
+			plot_pixel(42+xpos*30+15*offset+i, 238 - ypos*30 - j, color);
 		}
 	}
 }
@@ -496,4 +534,40 @@ void plot_pixel(int x, int y, short int line_color)
 
 int fill_rand(int* ptr, int a, int b) {
 	return *ptr = a + rand() % (b - a + 1);
+}
+int game_logic(int point){
+    int add = 1 + rand() % 6;
+    point = point + add;
+    
+    if(point == 8){
+        point = 5;
+    }
+    if(point == 59){
+        point = 32;
+    }
+    if(point == 36){
+        point = 31;
+    }
+    if(point == 13){
+        point = 35;
+    }
+    if(point == 17){
+        point = 51;
+    }
+    if(point == 45){
+        point = 62;
+    }
+    
+    switch(add){
+            case 1: draw_one(10,10);break;
+            case 2: draw_two(10,10);break;
+            case 3: draw_three(10,10);break;
+            case 4: draw_four(10,10);break;
+            case 5: draw_five(10,10);break;
+            case 6: draw_six(10,10);break;
+            default :;
+        }
+    
+    return point;
+    
 }
